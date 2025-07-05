@@ -17,16 +17,17 @@
     justify-content: center;
     font-size: 1.5rem;
     margin: 0 0.5rem;
-    background: #e0e7ff;
-    box-shadow: 0 2px 8px rgba(49, 46, 129, 0.08);
+    background: rgba(40, 30, 60, 0.28);
+    backdrop-filter: blur(6px) saturate(120%);
+    box-shadow: 0 2px 8px 0 rgba(60, 40, 120, 0.13);
 }
 
 .user-avatar {
-    background: #c7d2fe;
+    background: rgba(120, 90, 200, 0.18);
 }
 
 .bot-avatar {
-    background: #f1f5f9;
+    background: rgba(243, 244, 246, 0.18);
 }
 
 .message-bubble {
@@ -35,22 +36,24 @@
     border-radius: 18px;
     font-size: 1.05rem;
     line-height: 1.5;
-    box-shadow: 0 2px 8px rgba(49, 46, 129, 0.06);
+    box-shadow: 0 2px 12px 0 rgba(60, 40, 120, 0.10);
     word-break: break-word;
-    color: var(--color-text);
-    background: var(--color-bg-chat);
+    color: #fff;
+    background: rgba(40, 30, 60, 0.38);
+    backdrop-filter: blur(8px) saturate(140%);
+    border: 1.5px solid rgba(120, 90, 200, 0.18);
     transition: background 0.2s, color 0.2s;
 }
 
 .user-bubble {
-    background: var(--color-user-bubble);
-    color: var(--color-user-bubble-text);
+    background: rgba(120, 90, 200, 0.28);
+    color: #fff;
     border-bottom-right-radius: 4px;
 }
 
 .bot-bubble {
-    background: var(--color-bot-bubble);
-    color: var(--color-bot-bubble-text);
+    background: rgba(243, 244, 246, 0.22);
+    color: #222;
     border-bottom-left-radius: 4px;
 }
 

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ChatWindow from './components/ChatWindow';
 import ChatInput from './components/ChatInput';
 import QuickReplies from './components/QuickReplies';
+import VideoBackground from './components/VideoBackground';
 import styled from 'styled-components';
-import './styles/App.css';
 
 const SettingsBtn = styled.button`
   position: absolute;
@@ -105,27 +105,12 @@ const initialMessages = [
   { text: 'Hello! I am your FAQ Chatbot. Ask me anything about MOSDAC.', sender: 'bot', timestamp: now() }
 ];
 
-const getInitialTheme = () => {
-  if (typeof window !== 'undefined') {
-    const saved = localStorage.getItem('theme');
-    if (saved) return saved;
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
-  }
-  return 'light';
-};
-
 function App() {
   const [messages, setMessages] = useState(initialMessages);
   const [isLoading, setIsLoading] = useState(false);
-  const [theme, setTheme] = useState(getInitialTheme());
   const [showSettings, setShowSettings] = useState(false);
   const [botAvatar, setBotAvatar] = useState(() => getStoredAvatar('bot-avatar', '🛰️'));
   const [userAvatar, setUserAvatar] = useState(() => getStoredAvatar('user-avatar', '🧑'));
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
 
   useEffect(() => { localStorage.setItem('bot-avatar', botAvatar); }, [botAvatar]);
   useEffect(() => { localStorage.setItem('user-avatar', userAvatar); }, [userAvatar]);
@@ -146,7 +131,7 @@ function App() {
     setMessages(prev => [...prev, { text: userInput, sender: 'user', timestamp: now() }]);
     setIsLoading(true);
     try {
-      const response = await fetch('https://athuupandeyy.app.n8n.cloud/webhook-test/f0467dcb-1d49-4dbc-baae-84f26886a3dd', {
+      const response = await fetch('https://athuupandeyy.app.n8n.cloud/webhook/f0467dcb-1d49-4dbc-baae-84f26886a3dd', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: userInput })
@@ -166,9 +151,6 @@ function App() {
     if (!isLoading) handleSend(reply);
   };
 
-  // Theme toggle button
-  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
-
   // On reload, always reset chat messages to initial
   useEffect(() => {
     setMessages(initialMessages);
@@ -178,6 +160,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <VideoBackground />
       <header className="app-header">
         <SettingsBtn onClick={() => setShowSettings(true)} aria-label="Open settings">
           ⚙️
@@ -191,14 +174,6 @@ function App() {
           />
           <h1 style={{ margin: 0 }}>MOSDAC FAQ Chatbot</h1>
       </div>
-        <button
-          className="theme-toggle-btn"
-          onClick={toggleTheme}
-          aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-          tabIndex={0}
-        >
-          {theme === 'light' ? '🌙' : '☀️'}
-        </button>
       </header>
       {showSettings && (
         <ModalOverlay onClick={() => setShowSettings(false)}>

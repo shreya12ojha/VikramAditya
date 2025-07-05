@@ -1,9 +1,14 @@
 .chat-input-container {
+    background: rgba(40, 30, 60, 0.28);
+    backdrop-filter: blur(8px) saturate(140%);
+    border-radius: 16px;
+    box-shadow: 0 4px 16px 0 rgba(60, 40, 120, 0.13);
+    padding: 0.7rem 1rem;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
+    gap: 0.5rem;
     width: 100%;
     max-width: 600px;
-    gap: 0.7rem;
     margin-top: 0.5rem;
     position: relative;
 }

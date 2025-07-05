@@ -3,9 +3,13 @@
     max-width: 600px;
     height: 60vh;
     min-height: 320px;
-    background: var(--color-bg-chat);
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(49, 46, 129, 0.08);
+    background: rgba(40, 30, 60, 0.38);
+    /* more transparent, purple-tinted */
+    backdrop-filter: blur(10px) saturate(160%);
+    border: 1.5px solid rgba(120, 90, 200, 0.25);
+    /* soft purple border */
+    box-shadow: 0 8px 32px 0 rgba(60, 40, 120, 0.25);
+    border-radius: 18px;
     padding: 1.5rem 1rem 1rem 1rem;
     overflow-y: auto;
     display: flex;

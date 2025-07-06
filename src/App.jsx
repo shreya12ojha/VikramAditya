@@ -7,9 +7,9 @@ import styled from "styled-components";
 
 const SettingsBtn = styled.button`
   position: absolute;
-  left: 1.5rem;
+  right: 1.5rem;
   top: 1.5rem;
-  background: var(--color-accent);
+  background:none;
   color: var(--color-primary);
   border: none;
   border-radius: 50%;
@@ -229,37 +229,67 @@ function App() {
   return (
     <div className="app-container">
       <VideoBackground />
-      <header className="app-header">
+
+      <header
+        className="app-header"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "18px 1.5px",
+          position: "relative",
+        }}
+      >
+        {/* Left-aligned logo */}
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img
+            src="logova.jpg"
+            alt="MOSDAC Logo"
+            style={{
+              width: "3.5rem",
+              height: "3.5rem",
+              borderRadius: "50%",
+              objectFit: "cover",
+            }}
+            onError={(e) => {
+              e.target.style.display = "none";
+              /* e.target.parentNode.append("🛰️");*/
+            }}
+          />
+        </div>
+
+        {/* Center title and subtitle */}
+        <div
+          style={{
+            textAlign: "center",
+            flex: 1,
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        >
+          <h1 style={{ margin: 0, fontSize: "1.6rem", color: "#fff" }}>
+            V A A N I
+          </h1>
+          <p
+            style={{
+              margin: 0,
+              fontSize: "0.9rem",
+              color: "#ddd",
+              lineHeight: "1.2",
+            }}
+          >
+            VikramAditya's Assistant for Navigation and Insight
+          </p>
+        </div>
+
+        {/* Right-aligned settings button */}
         <SettingsBtn
           onClick={() => setShowSettings(true)}
           aria-label="Open settings"
         >
           ⚙️
         </SettingsBtn>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "0.7rem",
-          }}
-        >
-          <img
-            src="/logo.png"
-            alt="MOSDAC Logo"
-            style={{
-              width: "2.2rem",
-              height: "2.2rem",
-              borderRadius: "50%",
-              objectFit: "cover",
-            }}
-            onError={(e) => {
-              e.target.style.display = "none";
-              e.target.parentNode.append("🛰️");
-            }}
-          />
-          <h1 style={{ margin: 0 }}>V A A N I</h1>
-        </div>
       </header>
 
       {showSettings && (
@@ -313,7 +343,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <span>Powered by React & Vite | Advanced UI</span>
+        <span>VAANI – Guiding Your Space Data Journey</span>
       </footer>
     </div>
   );

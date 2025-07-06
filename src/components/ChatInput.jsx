@@ -13,6 +13,20 @@ const ChatInputContainer = styled.div`
   position: relative;
 `;
 
+const LeftControls = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-shrink: 0;
+`;
+
+const RightSection = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 0.7rem;
+  flex: 1;
+`;
+
 const EmojiBtn = styled.button`
   background: var(--color-accent);
   color: #f59e42;
@@ -334,89 +348,94 @@ const ChatInput = ({ onSend, isLoading }) => {
 
   return (
     <ChatInputContainer role="form" aria-label="Send a message">
-      <LanguageSelect value={lang} onChange={e => setLang(e.target.value)} disabled={isLoading || listening}>
-        {LANGUAGES_BY_CONTINENT.map(group => (
-          <optgroup key={group.label} label={group.label}>
-            {group.options.map(l => (
-              <option key={l.code} value={l.code}>{l.label}</option>
-            ))}
-          </optgroup>
-        ))}
-      </LanguageSelect>
-      <EmojiBtn
-        type="button"
-        onClick={() => setShowEmoji((v) => !v)}
-        aria-label="Open emoji picker"
-        disabled={isLoading}
-        tabIndex={0}
-      >
-        😊
-      </EmojiBtn>
-      <AttachBtn
-        type="button"
-        onClick={() => fileInputRef.current && fileInputRef.current.click()}
-        aria-label="Attach file or image"
-        disabled={isLoading}
-        tabIndex={0}
-      >
-        📎
-      </AttachBtn>
-      <MicBtn
-        type="button"
-        onClick={handleMicClick}
-        aria-label={listening ? 'Stop voice input' : 'Start voice input'}
-        disabled={isLoading}
-        listening={listening}
-        tabIndex={0}
-      >
-        {listening ? '🎤' : '🎙️'}
-      </MicBtn>
-      {listening && (
-        <WaveformContainer aria-label="Listening...">
-          {[0, 0.2, 0.4, 0.1, 0.3].map((delay, i) => (
-            <WaveBar key={i} delay={delay} />
+      <LeftControls>
+        <LanguageSelect value={lang} onChange={e => setLang(e.target.value)} disabled={isLoading || listening}>
+          {LANGUAGES_BY_CONTINENT.map(group => (
+            <optgroup key={group.label} label={group.label}>
+              {group.options.map(l => (
+                <option key={l.code} value={l.code}>{l.label}</option>
+              ))}
+            </optgroup>
           ))}
-        </WaveformContainer>
-      )}
-      <input
-        type="file"
-        ref={fileInputRef}
-        style={{ display: 'none' }}
-        onChange={handleFileChange}
-        accept="image/*,application/pdf,.doc,.docx,.txt,.csv,.xlsx,.xls,.ppt,.pptx"
-      />
-      {showEmoji && (
-        <EmojiPickerPopup>
-          <Picker data={data} onEmojiSelect={handleEmojiSelect} theme="auto" />
-        </EmojiPickerPopup>
-      )}
-      {file && (
-        <FilePreview>
-          {filePreview ? (
-            <FilePreviewImg src={filePreview} alt="preview" />
-          ) : (
-            <FilePreviewName>{file.name}</FilePreviewName>
-          )}
-          <RemoveFileBtn onClick={handleRemoveFile} type="button" aria-label="Remove file">✖️</RemoveFileBtn>
-        </FilePreview>
-      )}
-      <StyledTextarea
-        value={input}
-        onChange={e => setInput(e.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder="Type your question..."
-        disabled={isLoading}
-        rows={1}
-        aria-label="Type your question"
-        ref={textareaRef}
-      />
-      <SendBtn
-        onClick={handleSend}
-        disabled={isLoading || (!input.trim() && !file)}
-        aria-label="Send message"
-      >
-        Send
-      </SendBtn>
+        </LanguageSelect>
+        <EmojiBtn
+          type="button"
+          onClick={() => setShowEmoji((v) => !v)}
+          aria-label="Open emoji picker"
+          disabled={isLoading}
+          tabIndex={0}
+        >
+          😊
+        </EmojiBtn>
+        <AttachBtn
+          type="button"
+          onClick={() => fileInputRef.current && fileInputRef.current.click()}
+          aria-label="Attach file or image"
+          disabled={isLoading}
+          tabIndex={0}
+        >
+          📎
+        </AttachBtn>
+        <MicBtn
+          type="button"
+          onClick={handleMicClick}
+          aria-label={listening ? 'Stop voice input' : 'Start voice input'}
+          disabled={isLoading}
+          listening={listening}
+          tabIndex={0}
+        >
+          {listening ? '🎤' : '🎙️'}
+        </MicBtn>
+        {listening && (
+          <WaveformContainer aria-label="Listening...">
+            {[0, 0.2, 0.4, 0.1, 0.3].map((delay, i) => (
+              <WaveBar key={i} delay={delay} />
+            ))}
+          </WaveformContainer>
+        )}
+      </LeftControls>
+      
+      <RightSection>
+        <input
+          type="file"
+          ref={fileInputRef}
+          style={{ display: 'none' }}
+          onChange={handleFileChange}
+          accept="image/*,application/pdf,.doc,.docx,.txt,.csv,.xlsx,.xls,.ppt,.pptx"
+        />
+        {showEmoji && (
+          <EmojiPickerPopup>
+            <Picker data={data} onEmojiSelect={handleEmojiSelect} theme="auto" />
+          </EmojiPickerPopup>
+        )}
+        {file && (
+          <FilePreview>
+            {filePreview ? (
+              <FilePreviewImg src={filePreview} alt="preview" />
+            ) : (
+              <FilePreviewName>{file.name}</FilePreviewName>
+            )}
+            <RemoveFileBtn onClick={handleRemoveFile} type="button" aria-label="Remove file">✖️</RemoveFileBtn>
+          </FilePreview>
+        )}
+        <StyledTextarea
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Type your question..."
+          disabled={isLoading}
+          rows={1}
+          aria-label="Type your question"
+          ref={textareaRef}
+        />
+        <SendBtn
+          onClick={handleSend}
+          disabled={isLoading || (!input.trim() && !file)}
+          aria-label="Send message"
+        >
+          Send
+        </SendBtn>
+      </RightSection>
       {error && <ErrorMsg>{error}</ErrorMsg>}
     </ChatInputContainer>
   );

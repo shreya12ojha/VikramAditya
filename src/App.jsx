@@ -9,7 +9,7 @@ const SettingsBtn = styled.button`
   position: absolute;
   right: 1.5rem;
   top: 1.5rem;
-  background:none;
+  background: none;
   color: var(--color-primary);
   border: none;
   border-radius: 50%;
@@ -156,7 +156,7 @@ const floatSubtitle = keyframes`
 const FloatingTitle = styled.h1`
   margin: 0;
   font-size: 1.6rem;
-  background: linear-gradient(135deg, #FF8C00 25%, #FFFFFF 50%, #228B22 75%);
+  background: linear-gradient(135deg, #ff8c00 25%, #ffffff 50%, #228b22 75%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -226,7 +226,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "https://athuupandeyy.app.n8n.cloud/webhook/28c900df-0822-4166-af89-e777c277fd2c",
+        "https://athuupandeyy.app.n8n.cloud/webhook/8abe8a8d-448d-47b0-b740-8050809ae0d5",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -285,7 +285,8 @@ function App() {
           justifyContent: "space-between",
           padding: "18px 1.5px",
           position: "relative",
-          background: "linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+          background:
+            "linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
           boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)",
           borderRadius: "0 0 18px 18px",
         }}
@@ -302,8 +303,10 @@ function App() {
               objectFit: "cover",
               transition: "transform 0.2s",
             }}
-            onMouseOver={e => (e.currentTarget.style.transform = "scale(1.1)")}
-            onMouseOut={e => (e.currentTarget.style.transform = "scale(1)")}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.transform = "scale(1.1)")
+            }
+            onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
             onError={(e) => {
               e.target.style.display = "none";
               /* e.target.parentNode.append("🛰️");*/
@@ -321,9 +324,7 @@ function App() {
             transform: "translateX(-50%)",
           }}
         >
-          <FloatingTitle>
-            V A A N I
-          </FloatingTitle>
+          <FloatingTitle>V A A N I</FloatingTitle>
           <FloatingSubtitle>
             VikramAditya's Assistant for Navigation and Insight
           </FloatingSubtitle>

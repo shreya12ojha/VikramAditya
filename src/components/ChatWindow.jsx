@@ -8,19 +8,24 @@ const ChatWindowContainer = styled.div`
   max-width: 1000px;
   height: 60vh;
   min-height: 320px;
-  background: var(--color-bg-chat, #fff);
+  background: transparent;
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(49, 46, 129, 0.08);
   padding: 1.5rem 1rem 1rem 1rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
   margin-bottom: 1rem;
-  transition: box-shadow 0.2s, background 0.2s;
-  &:hover {
-    box-shadow: 0 8px 32px rgba(49, 46, 129, 0.13);
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
   }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  
   @media (max-width: 1100px) {
     max-width: 100vw;
     min-height: 200px;

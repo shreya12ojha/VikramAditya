@@ -3,7 +3,7 @@ import ChatWindow from "./components/ChatWindow";
 import ChatInput from "./components/ChatInput";
 import QuickReplies from "./components/QuickReplies";
 import VideoBackground from "./components/VideoBackground";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const SettingsBtn = styled.button`
   position: absolute;
@@ -123,6 +123,53 @@ const initialMessages = [
   },
 ];
 
+const floatVaani = keyframes`
+  0% {
+    transform: translateY(0);
+    text-shadow: 0 2px 8px #6366f1, 0 0 0 #fff;
+  }
+  50% {
+    transform: translateY(-18px);
+    text-shadow: 0 8px 24px #6366f1, 0 0 8px #fff;
+  }
+  100% {
+    transform: translateY(0);
+    text-shadow: 0 2px 8px #6366f1, 0 0 0 #fff;
+  }
+`;
+
+const floatSubtitle = keyframes`
+  0% {
+    transform: translateY(0);
+    text-shadow: 0 1px 4px #6366f1, 0 0 0 #fff;
+  }
+  50% {
+    transform: translateY(-8px);
+    text-shadow: 0 4px 12px #6366f1, 0 0 4px #fff;
+  }
+  100% {
+    transform: translateY(0);
+    text-shadow: 0 1px 4px #6366f1, 0 0 0 #fff;
+  }
+`;
+
+const FloatingTitle = styled.h1`
+  margin: 0;
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, #FF8C00 25%, #FFFFFF 50%, #228B22 75%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+`;
+
+const FloatingSubtitle = styled.p`
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ddd;
+  line-height: 1.2;
+`;
+
 function App() {
   const [messages, setMessages] = useState(initialMessages);
   const [isLoading, setIsLoading] = useState(false);
@@ -238,6 +285,9 @@ function App() {
           justifyContent: "space-between",
           padding: "18px 1.5px",
           position: "relative",
+          background: "linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
+          boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)",
+          borderRadius: "0 0 18px 18px",
         }}
       >
         {/* Left-aligned logo */}
@@ -250,7 +300,10 @@ function App() {
               height: "3.5rem",
               borderRadius: "50%",
               objectFit: "cover",
+              transition: "transform 0.2s",
             }}
+            onMouseOver={e => (e.currentTarget.style.transform = "scale(1.1)")}
+            onMouseOut={e => (e.currentTarget.style.transform = "scale(1)")}
             onError={(e) => {
               e.target.style.display = "none";
               /* e.target.parentNode.append("🛰️");*/
@@ -268,19 +321,12 @@ function App() {
             transform: "translateX(-50%)",
           }}
         >
-          <h1 style={{ margin: 0, fontSize: "1.6rem", color: "#fff" }}>
+          <FloatingTitle>
             V A A N I
-          </h1>
-          <p
-            style={{
-              margin: 0,
-              fontSize: "0.9rem",
-              color: "#ddd",
-              lineHeight: "1.2",
-            }}
-          >
+          </FloatingTitle>
+          <FloatingSubtitle>
             VikramAditya's Assistant for Navigation and Insight
-          </p>
+          </FloatingSubtitle>
         </div>
 
         {/* Right-aligned settings button */}

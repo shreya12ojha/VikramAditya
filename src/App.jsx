@@ -179,7 +179,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "https://athuupandeyy.app.n8n.cloud/webhook-test/28c900df-0822-4166-af89-e777c277fd2c",
+        "https://athuupandeyy.app.n8n.cloud/webhook/28c900df-0822-4166-af89-e777c277fd2c",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

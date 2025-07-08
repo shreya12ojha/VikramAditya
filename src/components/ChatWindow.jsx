@@ -5,7 +5,7 @@ import Loader from './Loader';
 
 const ChatWindowContainer = styled.div`
   width: 100%;
-  max-width: 1000px;
+  /* max-width removed for full width */
   height: 60vh;
   min-height: 320px;
   background: transparent;

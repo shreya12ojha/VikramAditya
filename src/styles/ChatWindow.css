@@ -1,6 +1,5 @@
 .chat-window {
     width: 100%;
-    max-width: 600px;
     height: 60vh;
     min-height: 320px;
     background: rgba(37, 31, 48, 0.38);

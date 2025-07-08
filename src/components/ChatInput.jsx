@@ -7,7 +7,7 @@ const ChatInputContainer = styled.div`
   display: flex;
   align-items: flex-end;
   width: 100%;
-  max-width: 1000px;
+  /* max-width removed for full width */
   gap: 0.7rem;
   margin-top: 0.5rem;
   position: relative;
@@ -30,23 +30,6 @@ const RightSection = styled.div`
 const EmojiBtn = styled.button`
   background: var(--color-accent);
   color: #f59e42;
-  border: none;
-  border-radius: 50%;
-  width: 2.2rem;
-  height: 2.2rem;
-  font-size: 1.3rem;
-  cursor: pointer;
-  margin-right: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, color 0.2s;
-  &:focus { outline: 2px solid var(--color-primary); }
-`;
-
-const AttachBtn = styled.button`
-  background: var(--color-accent);
-  color: #6366f1;
   border: none;
   border-radius: 50%;
   width: 2.2rem;
@@ -159,47 +142,6 @@ const SendBtn = styled.button`
   &:disabled { background: var(--color-secondary); cursor: not-allowed; }
 `;
 
-const FilePreview = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--color-accent);
-  border-radius: 8px;
-  padding: 0.3rem 0.7rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.3rem;
-  max-width: 180px;
-`;
-
-const FilePreviewImg = styled.img`
-  max-width: 40px;
-  max-height: 40px;
-  border-radius: 6px;
-  object-fit: cover;
-  border: 1px solid var(--color-border);
-`;
-
-const FilePreviewName = styled.span`
-  font-size: 0.97rem;
-  color: var(--color-bot);
-  max-width: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-
-const RemoveFileBtn = styled.button`
-  background: none;
-  border: none;
-  color: #e11d48;
-  font-size: 1.1rem;
-  cursor: pointer;
-  margin-left: 0.2rem;
-  padding: 0;
-  transition: color 0.2s;
-  &:focus { outline: 2px solid #e11d48; }
-`;
-
 const LANGUAGES_BY_CONTINENT = [
   {
     label: 'Asia',
@@ -256,21 +198,13 @@ const LANGUAGES_BY_CONTINENT = [
 const ChatInput = ({ onSend, isLoading }) => {
   const [input, setInput] = useState('');
   const [showEmoji, setShowEmoji] = useState(false);
-  const [file, setFile] = useState(null);
-  const [filePreview, setFilePreview] = useState(null);
   const [listening, setListening] = useState(false);
   const [lang, setLang] = useState('en-US');
   const [error, setError] = useState('');
   const textareaRef = useRef(null);
-  const fileInputRef = useRef(null);
-  const recognitionRef = useRef(null);
 
   const handleSend = () => {
-    if (file) {
-      onSend({ type: 'file', file, preview: filePreview });
-      setFile(null);
-      setFilePreview(null);
-    } else if (input.trim()) {
+    if (input.trim()) {
       onSend(input);
     }
     setInput('');
@@ -293,26 +227,6 @@ const ChatInput = ({ onSend, isLoading }) => {
       textareaRef.current.focus();
       textareaRef.current.selectionEnd = cursorPos + emoji.native.length;
     }, 0);
-  };
-
-  const handleFileChange = (e) => {
-    const selected = e.target.files[0];
-    if (selected) {
-      setFile(selected);
-      if (selected.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = (ev) => setFilePreview(ev.target.result);
-        reader.readAsDataURL(selected);
-      } else {
-        setFilePreview(null);
-      }
-    }
-  };
-
-  const handleRemoveFile = () => {
-    setFile(null);
-    setFilePreview(null);
-    if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
   // Voice input logic
@@ -367,15 +281,6 @@ const ChatInput = ({ onSend, isLoading }) => {
         >
           😊
         </EmojiBtn>
-        <AttachBtn
-          type="button"
-          onClick={() => fileInputRef.current && fileInputRef.current.click()}
-          aria-label="Attach file or image"
-          disabled={isLoading}
-          tabIndex={0}
-        >
-          📎
-        </AttachBtn>
         <MicBtn
           type="button"
           onClick={handleMicClick}
@@ -396,27 +301,10 @@ const ChatInput = ({ onSend, isLoading }) => {
       </LeftControls>
       
       <RightSection>
-        <input
-          type="file"
-          ref={fileInputRef}
-          style={{ display: 'none' }}
-          onChange={handleFileChange}
-          accept="image/*,application/pdf,.doc,.docx,.txt,.csv,.xlsx,.xls,.ppt,.pptx"
-        />
         {showEmoji && (
           <EmojiPickerPopup>
             <Picker data={data} onEmojiSelect={handleEmojiSelect} theme="auto" />
           </EmojiPickerPopup>
-        )}
-        {file && (
-          <FilePreview>
-            {filePreview ? (
-              <FilePreviewImg src={filePreview} alt="preview" />
-            ) : (
-              <FilePreviewName>{file.name}</FilePreviewName>
-            )}
-            <RemoveFileBtn onClick={handleRemoveFile} type="button" aria-label="Remove file">✖️</RemoveFileBtn>
-          </FilePreview>
         )}
         <StyledTextarea
           value={input}
@@ -430,7 +318,7 @@ const ChatInput = ({ onSend, isLoading }) => {
         />
         <SendBtn
           onClick={handleSend}
-          disabled={isLoading || (!input.trim() && !file)}
+          disabled={isLoading || !input.trim()}
           aria-label="Send message"
         >
           Send

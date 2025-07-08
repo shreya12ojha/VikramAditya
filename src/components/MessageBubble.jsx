@@ -46,10 +46,11 @@ const Bubble = styled.div`
   border-radius: 18px;
   font-size: 1.05rem;
   line-height: 1.5;
-  box-shadow: 0 2px 8px rgba(49, 46, 129, 0.06);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.13);
   word-break: break-word;
   color: ${props => (props.isUser ? '#fff' : '#312e81')};
-  background: ${props => (props.isUser ? '#6366f1' : '#f3f4f6')};
+  background: ${props => (props.isUser ? '#6366f1' : '#e0e7ff')};
+  border: ${props => (props.isUser ? '1.5px solid #4f46e5' : '1.5px solid #a5b4fc')};
   border-bottom-right-radius: ${props => (props.isUser ? '4px' : '18px')};
   border-bottom-left-radius: ${props => (props.isUser ? '18px' : '4px')};
   animation: slideInBounce 0.6s cubic-bezier(0.23, 1.15, 0.32, 1) both;

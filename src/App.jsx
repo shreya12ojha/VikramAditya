@@ -284,7 +284,11 @@ function App() {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "18px 1.5px",
-          position: "relative",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          zIndex: 1100,
           background:
             "linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
           boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)",
@@ -378,7 +382,7 @@ function App() {
         </ModalOverlay>
       )}
 
-      <main className="chat-main">
+      <main className="chat-main" style={{ paddingTop: "5.5rem" }}>
         <ChatWindow
           messages={messages}
           isLoading={isLoading}

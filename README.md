@@ -1,78 +1,81 @@
-# MOSDAC FAQ Chatbot
+# FAQ Chatbot – VAANI
 
-A modern, interactive FAQ chatbot for MOSDAC, built with React and Vite. This project features a beautiful UI, customizable avatars, quick replies, file upload, emoji support, voice input, and a light/dark theme toggle.
+VikramAditya's Assistant for Navigation and Insight (VAANI) is an interactive FAQ chatbot designed to help users with queries about MOSDAC. It features a modern UI, customizable avatars, quick replies, and a persistent chat experience.
 
 ## Features
 
-- **Conversational UI**: Chat with the bot in a familiar, friendly interface.
-- **Custom Avatars**: Choose your own and the bot's avatar from a variety of emojis.
-- **Quick Replies**: Get started fast with suggested questions.
-- **File Upload**: Send files to the bot (demo response only).
-- **Emoji Picker**: Express yourself with emoji in your messages.
-- **Voice Input**: Dictate your questions using your microphone.
-- **Theme Toggle**: Switch between light and dark mode.
-- **Responsive Design**: Works great on desktop and mobile.
+- Conversational chatbot interface
+- Customizable bot and user avatars (emoji-based)
+- Quick reply suggestions
+- File upload support (simulated)
+- Animated video background
+- Persistent session per browser tab
+- Responsive and modern design
 
-## Screenshots
+## Installation
 
-> _Add screenshots here if desired._
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd faq-chatbot
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. **Start the development server:**
+   ```bash
+   npm start
+   # or
+   yarn start
+   ```
 
-## Getting Started
+## Usage
 
-### Prerequisites
-- Node.js (v16+ recommended)
-- npm
-
-### Installation
-
-```bash
-cd faq-chatbot
-npm install
-```
-
-### Running the App
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-### Building for Production
-
-```bash
-npm run build
-```
-
-### Linting
-
-```bash
-npm run lint
-```
+- Open your browser and navigate to `http://localhost:3000` (or the port shown in your terminal).
+- Start chatting with VAANI about MOSDAC.
+- Use the ⚙️ settings button (top right) to choose your avatar and the bot's avatar.
+- Use quick replies for common questions.
+- Upload a file to simulate file handling.
 
 ## Project Structure
 
-- `src/App.jsx` — Main app logic and state
-- `src/components/ChatWindow.jsx` — Chat message display
-- `src/components/ChatInput.jsx` — Message input, emoji, file, and voice controls
-- `src/components/QuickReplies.jsx` — Suggested quick reply buttons
-- `src/components/Loader.jsx` — Loading spinner
-- `src/components/MessageBubble.jsx` — Individual chat bubbles
-- `src/styles/` — CSS modules for styling
-
-## API/Webhook
-
-The chatbot sends user messages to a backend webhook for responses. Update the webhook URL in `App.jsx` as needed:
-
 ```
-fetch('https://athuupandeyy.app.n8n.cloud/webhook-test/f0467dcb-1d49-4dbc-baae-84f26886a3dd', ...)
+faq-chatbot/
+├── src/
+│   ├── App.jsx            # Main React component
+│   ├── components/        # ChatWindow, ChatInput, Loader, etc.
+│   ├── styles/            # CSS files for styling
+│   └── assets/            # Static assets (e.g., images)
+├── public/                # Static public files
+├── index.html             # Main HTML file
+├── package.json           # Project metadata and dependencies
+└── ...
 ```
 
 ## Customization
-- **Avatars**: Click the settings (⚙️) button to choose avatars.
-- **Theme**: Use the sun/moon button to toggle theme.
-- **Quick Replies**: Edit `defaultReplies` in `src/components/QuickReplies.jsx`.
+
+- **Avatars:**
+  - Click the ⚙️ button to open settings and select from a variety of emoji avatars for both the bot and user.
+  - Avatars are stored in localStorage for persistence.
+- **Session:**
+  - Each browser tab gets a unique session ID for chat continuity.
+- **Webhook:**
+  - The chatbot sends user messages to a remote webhook for processing. Update the webhook URL in `src/App.jsx` if needed.
+
+## Technologies Used
+
+- React (functional components, hooks)
+- Styled-components for CSS-in-JS
+- JavaScript (ES6+)
+- HTML5 & CSS3
 
 ## License
 
-MIT
+[MIT](LICENSE) (or specify your license here)
+
+---
+
+*Guiding Your Space Data Journey with VAANI!*

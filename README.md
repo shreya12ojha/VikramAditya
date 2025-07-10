@@ -71,11 +71,6 @@ faq-chatbot/
 - Styled-components for CSS-in-JS
 - JavaScript (ES6+)
 - HTML5 & CSS3
-
-## License
-
-[MIT](LICENSE) (or specify your license here)
-
 ---
 
 *Guiding Your Space Data Journey with VAANI!*

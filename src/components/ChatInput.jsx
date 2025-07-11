@@ -202,6 +202,7 @@ const ChatInput = ({ onSend, isLoading }) => {
   const [lang, setLang] = useState('en-US');
   const [error, setError] = useState('');
   const textareaRef = useRef(null);
+  const recognitionRef = useRef(null);
 
   const handleSend = () => {
     if (input.trim()) {

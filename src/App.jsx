@@ -3,81 +3,9 @@ import ChatWindow from "./components/ChatWindow";
 import ChatInput from "./components/ChatInput";
 import QuickReplies from "./components/QuickReplies";
 import VideoBackground from "./components/VideoBackground";
-import styled, { keyframes } from "styled-components";
+import "./styles/App.css";
 
-const SettingsBtn = styled.button`
-  position: absolute;
-  right: 1.5rem;
-  top: 1.5rem;
-  background: none;
-  color: var(--color-primary);
-  border: none;
-  border-radius: 50%;
-  width: 2.2rem;
-  height: 2.2rem;
-  font-size: 1.3rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s, color 0.2s;
-  z-index: 2;
-`;
-
-const ModalOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ModalContent = styled.div`
-  background: #fff;
-  color: #222;
-  border-radius: 16px;
-  padding: 2rem 2.5rem;
-  min-width: 320px;
-  max-width: 90vw;
-  box-shadow: 0 8px 32px rgba(49, 46, 129, 0.18);
-`;
-
-const AvatarGrid = styled.div`
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.2rem;
-`;
-
-const AvatarOption = styled.button`
-  font-size: 2rem;
-  background: none;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  cursor: pointer;
-  padding: 0.3rem;
-  transition: border 0.2s;
-  &:focus,
-  &.selected {
-    border: 2px solid #6366f1;
-  }
-`;
-
-const CloseBtn = styled.button`
-  background: none;
-  border: none;
-  color: #e11d48;
-  font-size: 1.5rem;
-  cursor: pointer;
-  position: absolute;
-  top: 1.2rem;
-  right: 1.5rem;
-`;
+// Removed styled-components and keyframes
 
 const BOT_AVATARS = [
   { emoji: "🛰️", label: "Satellite" },
@@ -123,52 +51,9 @@ const initialMessages = [
   },
 ];
 
-const floatVaani = keyframes`
-  0% {
-    transform: translateY(0);
-    text-shadow: 0 2px 8px #6366f1, 0 0 0 #fff;
-  }
-  50% {
-    transform: translateY(-18px);
-    text-shadow: 0 8px 24px #6366f1, 0 0 8px #fff;
-  }
-  100% {
-    transform: translateY(0);
-    text-shadow: 0 2px 8px #6366f1, 0 0 0 #fff;
-  }
-`;
+// Removed floatVaani and floatSubtitle
 
-const floatSubtitle = keyframes`
-  0% {
-    transform: translateY(0);
-    text-shadow: 0 1px 4px #6366f1, 0 0 0 #fff;
-  }
-  50% {
-    transform: translateY(-8px);
-    text-shadow: 0 4px 12px #6366f1, 0 0 4px #fff;
-  }
-  100% {
-    transform: translateY(0);
-    text-shadow: 0 1px 4px #6366f1, 0 0 0 #fff;
-  }
-`;
-
-const FloatingTitle = styled.h1`
-  margin: 0;
-  font-size: 1.6rem;
-  background: linear-gradient(135deg, #ff8c00 25%, #ffffff 50%, #228b22 75%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: bold;
-`;
-
-const FloatingSubtitle = styled.p`
-  margin: 0;
-  font-size: 0.9rem;
-  color: #ddd;
-  line-height: 1.2;
-`;
+// Removed FloatingTitle and FloatingSubtitle
 
 function App() {
   const [messages, setMessages] = useState(initialMessages);
@@ -294,92 +179,78 @@ function App() {
           boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)",
           borderRadius: "0 0 18px 18px",
         }}
-      >
+      ></header>
+      <header className="app-header app-header-flex">
         {/* Left-aligned logo */}
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div className="logo-container">
           <img
             src="logova.jpg"
             alt="MOSDAC Logo"
-            style={{
-              width: "3.5rem",
-              height: "3.5rem",
-              borderRadius: "50%",
-              objectFit: "cover",
-              transition: "transform 0.2s",
-            }}
-            onMouseOver={(e) =>
-              (e.currentTarget.style.transform = "scale(1.1)")
-            }
+            className="logo-img"
+            onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
             onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
             onError={(e) => {
               e.target.style.display = "none";
-              /* e.target.parentNode.append("🛰️");*/
             }}
           />
         </div>
 
         {/* Center title and subtitle */}
-        <div
-          style={{
-            textAlign: "center",
-            flex: 1,
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
-          }}
-        >
-          <FloatingTitle>V A A N I</FloatingTitle>
-          <FloatingSubtitle>
+        <div className="header-center">
+          <h1 className="floating-title">V A A N I</h1>
+          <p className="floating-subtitle">
             VikramAditya's Assistant for Navigation and Insight
-          </FloatingSubtitle>
+          </p>
         </div>
 
         {/* Right-aligned settings button */}
-        <SettingsBtn
+        <button
+          className="settings-btn"
           onClick={() => setShowSettings(true)}
           aria-label="Open settings"
         >
           ⚙️
-        </SettingsBtn>
+        </button>
       </header>
 
       {showSettings && (
-        <ModalOverlay onClick={() => setShowSettings(false)}>
-          <ModalContent onClick={(e) => e.stopPropagation()}>
-            <CloseBtn
+        <div className="modal-overlay" onClick={() => setShowSettings(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="close-btn"
               onClick={() => setShowSettings(false)}
               aria-label="Close settings"
             >
               ✖️
-            </CloseBtn>
+            </button>
             <h2>Choose Bot Avatar</h2>
-            <AvatarGrid>
+            <div className="avatar-grid">
               {BOT_AVATARS.map((a) => (
-                <AvatarOption
+                <button
                   key={a.emoji}
-                  className={botAvatar === a.emoji ? "selected" : ""}
+                  className={`avatar-option${botAvatar === a.emoji ? " selected" : ""}`}
                   onClick={() => setBotAvatar(a.emoji)}
                   aria-label={a.label}
                 >
                   {a.emoji}
-                </AvatarOption>
+                </button>
               ))}
-            </AvatarGrid>
+            </div>
             <h2>Choose Your Avatar</h2>
-            <AvatarGrid>
+            <div className="avatar-grid">
               {USER_AVATARS.map((a) => (
-                <AvatarOption
+                <button
                   key={a.emoji}
-                  className={userAvatar === a.emoji ? "selected" : ""}
+                  className={`avatar-option${userAvatar === a.emoji ? " selected" : ""}`}
                   onClick={() => setUserAvatar(a.emoji)}
                   aria-label={a.label}
                 >
                   {a.emoji}
-                </AvatarOption>
+                </button>
               ))}
-            </AvatarGrid>
-          </ModalContent>
-        </ModalOverlay>
+            </div>
+          </div>
+        </div>
       )}
 
       <main className="chat-main" style={{ paddingTop: "5.5rem" }}>

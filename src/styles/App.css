@@ -253,3 +253,137 @@
         font-size: 1rem;
     }
 }
+
+
+/* App.jsx extracted styles */
+
+.settings-btn {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    background: none;
+    color: var(--color-primary);
+    border: none;
+    border-radius: 50%;
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    z-index: 2;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #fff;
+    color: #222;
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    min-width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 8px 32px rgba(49, 46, 129, 0.18);
+    position: relative;
+}
+
+.avatar-grid {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+}
+
+.avatar-option {
+    font-size: 2rem;
+    background: none;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0.3rem;
+    transition: border 0.2s;
+}
+
+.avatar-option:focus,
+.avatar-option.selected {
+    border: 2px solid #6366f1;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #e11d48;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: transform 0.2s;
+}
+
+.header-center {
+    text-align: center;
+    flex: 1;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.floating-title {
+    margin: 0;
+    font-size: 1.6rem;
+    background: linear-gradient(135deg, #ff8c00 25%, #ffffff 50%, #228b22 75%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: bold;
+    text-shadow: none;
+}
+
+.floating-subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #ddd;
+    line-height: 1.2;
+    text-shadow: none;
+}
+
+.app-header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 1.5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    background: linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 0 0 18px 18px;
+}

@@ -226,7 +226,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "https://athuupandeyy.app.n8n.cloud/webhook-test/8abe8a8d-448d-47b0-b740-8050809ae0d5",
+        "https://athuupandeyy.app.n8n.cloud/webhook/8abe8a8d-448d-47b0-b740-8050809ae0d5",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -284,7 +284,7 @@ function App() {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "18px 1.5px",
-          position: "fixed",
+          position: "relative",
           top: 0,
           left: 0,
           width: "100%",
